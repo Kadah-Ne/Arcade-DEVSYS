@@ -4,7 +4,7 @@ from pongchilling.models import User
 def searchSave(TargetUsername):
     user = User.objects.filter(username = TargetUsername)
     if user:
-        return str(user[0].split(",")[1])
+        return str(user[0]).split(",")[1]
     else:
         return None
 def createUser(NewUsername,NewMdp):

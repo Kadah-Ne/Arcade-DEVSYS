@@ -9,7 +9,7 @@ def Index(request):
         userName = request.GET.dict()["userName"]
         password = request.GET.dict()["password"]
         request.session["username"] = userName
-        foundLevel = DBFunctions.searchLevel(userName)
+        foundLevel = DBFunctions.searchSave(userName)
         print(foundLevel)
         if foundLevel !=None:
             return render(request,'index.html')

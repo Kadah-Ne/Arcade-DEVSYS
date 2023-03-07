@@ -4,8 +4,8 @@ import uuid
 class User(models.Model):
     username=models.CharField(max_length=255,null=True)
     mdp=models.CharField(max_length=255,null=True)
-    currentscore=models.IntegerField()
-    topscore=models.IntegerField()
-    level=models.IntegerField()
+    currentscore=models.IntegerField(null=True)
+    topscore=models.IntegerField(null=True)
+    level=models.IntegerField(null=True)
     def __str__(self):
-        return self.username,self.mdp,str(self.score)
+        return self.username+","+self.mdp+","+str(self.currentscore)
