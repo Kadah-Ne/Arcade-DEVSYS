@@ -1,0 +1,8 @@
+Commande à mettre manuellement pour initialiser le conteneur/Image docker.
+
+docker build -t "NomImage":"VersionImage" .
+docker run -d -p 8001:8001 "NomImage":"VersionImage"
+
+
+
+Note : Changer le 1.0 par la version.
