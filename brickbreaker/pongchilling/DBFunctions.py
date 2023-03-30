@@ -17,6 +17,11 @@ def saveLevel(request,levelid):
     user.level = levelid
     user.save()
 
+def deleteByUsername(Username):
+    user = User.objects.get(username=Username)
+    user.delete()
+    print("deleted a user!")
+
 def saveScore(request,score):
     TargetUsername= request.session.get("userName")
     user = User.objects.filter(username=TargetUsername)[0]
