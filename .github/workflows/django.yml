@@ -29,3 +29,6 @@ jobs:
       run: |
         cd brickbreaker
         python manage.py test
+    - store_artifacts:
+        path: test-reports/
+        destination: python_app
