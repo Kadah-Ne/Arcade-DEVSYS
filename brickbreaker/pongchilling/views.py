@@ -12,9 +12,10 @@ def Index(request):
         request.session["mdp"] = password
         foundLevel = DBFunctions.searchSave(userName)
         print("Found Level",foundLevel)
-        if foundLevel !=None:
+        if foundLevel !=None and DBFunctions.checkPass(request.session["username"], request.session["mdp"]):
             return render(request,'index.html')
-            
+        elif foundLevel !=None and DBFunctions.checkPass(request.session["username"], request.session["mdp"]) == False:
+            return render(request, 'Login.html', {'passError': True})
         else:
             # DBFunctions.createUser(userName,password)
             return render(request, 'Login.html',{'isNew':True})
@@ -24,5 +25,6 @@ def Index(request):
             return render(request,'index.html')
         else : 
           return render(request, 'Login.html',{'isNew':False})
+
     else :
         return render(request, 'Login.html')
