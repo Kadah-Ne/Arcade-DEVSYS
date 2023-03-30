@@ -1,4 +1,5 @@
 from unittest import TestCase
+from . import DBFunctions
 import time
 import json
 from selenium import webdriver
@@ -20,12 +21,15 @@ class testTestwithnewaccount(TestCase):
   
   
   def test_testwithnewaccount(self):
+    a = DBFunctions.searchSave("test_selenium01")
+    if(a!=None):
+        DBFunctions.deleteByUsername("test_selenium01")
     self.driver.get("http://127.0.0.1:8000/pongchilling/")
     self.driver.set_window_size(970, 1032)
     self.driver.find_element(By.NAME, "userName").click()
-    self.driver.find_element(By.NAME, "userName").send_keys("nicolas12")
+    self.driver.find_element(By.NAME, "userName").send_keys("test_selenium01")
     self.driver.find_element(By.NAME, "password").click()
-    self.driver.find_element(By.NAME, "password").send_keys("nicolas")
+    self.driver.find_element(By.NAME, "password").send_keys("test_selenium01")
     self.driver.find_element(By.CSS_SELECTOR, ".brickValidation").click()
     self.driver.find_element(By.NAME, "oui").click()
 
@@ -33,7 +37,21 @@ class testTestwithnewaccount(TestCase):
   def tearDown(self):
     self.driver.quit()
 
-# a = TestTestwithnewaccount()
-# a.setup_method()
-# a.test_testwithnewaccount()
-# a.teardown_method()
+
+class testTestwithotheraccount(TestCase):
+    def setUp(self):
+        self.driver = webdriver.Firefox()
+        self.vars = {}
+  
+  
+    def test_testwithotheraccount(self):
+        self.driver.get("http://127.0.0.1:8000/pongchilling/")
+        self.driver.set_window_size(970, 1032)
+        self.driver.find_element(By.NAME, "userName").click()
+        self.driver.find_element(By.NAME, "userName").send_keys("test_selenium01")
+        self.driver.find_element(By.NAME, "password").click()
+        self.driver.find_element(By.NAME, "password").send_keys("test_selenium01")
+        self.driver.find_element(By.CSS_SELECTOR, ".brickValidation").click()
+
+    def tearDown(self):
+        self.driver.quit()    
