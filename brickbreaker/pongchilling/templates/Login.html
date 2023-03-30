@@ -22,12 +22,14 @@
         <p> Mot de pass erroné</p>
         {% endif%}
         {% else %}
-            <div class="LoginForm">
+            <div class="loginForm">
                 <form action="index" method="POST">
                     {% csrf_token %}
-                    <p>Voulez vous creer un compte ?</p>
-                    <button type="submit" name="oui">Oui</button>
-                    <button type="submit" name="non">Non</button>
+                    <div class="paddleInput">
+                        <span>Voulez-vous creez un compte ?</span>
+                    </div>
+                    <button type="submit" name="oui" class="brickValidation">Oui</button>
+                    <button type="submit" name="non" class="brickValidatioNon">Non</button>
                 </form>
             </div>
         {%endif%}
