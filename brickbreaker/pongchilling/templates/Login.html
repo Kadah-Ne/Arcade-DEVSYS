@@ -5,8 +5,10 @@
     </head>
     <body>
         <img src="../static/Images/brickBeaker_Logo.png" alt="">
+        {% if isNew != True %}
         <div class="loginForm">
-            <form action="index">
+            <form action="index" method="POST">
+                {% csrf_token %}
                 <div class="paddleInput">
                     <input type="text" name="userName" placeholder="Nom d'utilisateur">
                 </div>
@@ -16,5 +18,15 @@
                 <button type="submit" class="brickValidation">Valider</button>
             </form>
         </div>
+        {% else %}
+            <div class="LoginForm">
+                <form action="index" method="POST">
+                    {% csrf_token %}
+                    <p>Voulez vous creer un compte ?</p>
+                    <button type="submit" name="oui">Oui</button>
+                    <button type="submit" name="non">Non</button>
+                </form>
+            </div>
+        {%endif%}
     </body>
 </html>
