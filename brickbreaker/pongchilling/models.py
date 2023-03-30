@@ -4,34 +4,8 @@ import uuid
 class User(models.Model):
     username=models.CharField(max_length=255,null=True)
     mdp=models.CharField(max_length=255,null=True)
-    currentscore=models.IntegerField()
-    topscore=models.IntegerField()
-    level=models.IntegerField()
+    currentscore=models.IntegerField(null=True)
+    topscore=models.IntegerField(null=True)
+    level=models.IntegerField(null=True)
     def __str__(self):
-        return self.username,self.mdp,str(self.score)
-
-def searchSave(TargetUsername):
-    user = User.objects.filter(username = TargetUsername)
-    if user:
-        return str(user[0].split(",")[1])
-    else:
-        return None
-def createUser(NewUsername,NewMdp):
-    newUser = User(username=NewUsername,mdp = NewMdp)
-    newUser.save()
-
-def saveLevel(request,levelid):
-    TargetUsername= request.session.get("userName")
-    user = User.objects.filter(username=TargetUsername)[0]
-    user.level = levelid
-    user.save()
-
-def saveScore(request,score):
-    TargetUsername= request.session.get("userName")
-    user = User.objects.filter(username=TargetUsername)[0]
-    user.currentscore = score
-
-    if user.topscore < score:
-        user.topscore = score
-
-    user.save()
+        return self.username+","+self.mdp+","+str(self.currentscore)
