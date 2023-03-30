@@ -17,6 +17,15 @@ def saveLevel(request,levelid):
     user.level = levelid
     user.save()
 
+def checkPass(Username,password):
+    user = User.objects.filter(username=Username)
+    print('input pass word '+password,str(user[0]).split(",")[1])
+    if password == str(user[0]).split(",")[1] :
+
+        return True
+    else:
+
+        return False
 def saveScore(request,score):
     TargetUsername= request.session.get("userName")
     user = User.objects.filter(username=TargetUsername)[0]
