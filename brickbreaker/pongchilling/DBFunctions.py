@@ -17,6 +17,11 @@ def saveLevel(request,levelid):
     user.level = levelid
     user.save()
 
+def deleteByUsername(Username):
+    user = User.objects.get(username=Username)
+    user.delete()
+    print("deleted a user!")
+
 def checkPass(Username,password):
     user = User.objects.filter(username=Username)
     print('input pass word '+password,str(user[0]).split(",")[1])
