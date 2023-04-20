@@ -7,9 +7,34 @@ def searchSave(TargetUsername):
         return str(user[0]).split(",")[1]
     else:
         return None
+    
+def getNbUser():
+    user = User.objects.all()
+    id= 0
+    for i in user:
+        id+=1
+    return id
+
+def clearDB():
+    user = User.objects.all()
+    for i in user:
+        i.delete()
+
 def createUser(NewUsername,NewMdp):
     newUser = User(username=NewUsername,mdp = NewMdp)
     newUser.save()
+
+def getUser(Username):
+    user = User.objects.get(username = Username)
+    return user
+
+def findUserId(id):
+    user = User.objects.get(id=id)
+    return user
+
+def removeUser(id):
+    user = User.objects.get(id=id)
+    user.delete()
 
 def saveLevel(request,levelid):
     TargetUsername= request.session.get("userName")
